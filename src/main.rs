@@ -185,17 +185,8 @@ pub struct Widget {
     pub tooltip: Tooltip,
     pub kind: WidgetKind, // Суть виджета
 }
-fn main() {
-    let content = std::fs::read_to_string("settingui.txt")
-        .map_err(|e| e.to_string())
-        .expect("msg");
-    let formatted = content
-        .replace("{", " { ")
-        .replace("}", " } ")
-        .replace(";", " ; ");
-    // formatted = content.replace(";", " ; ").replace("}", " } ");
-    let mut tokens = formatted.split_whitespace();
-    let mut current_node = 0;
+
+fn parser(tokens: &mut std::str::SplitWhitespace<'_>, current_node: &mut i32, container: &mut i32) {
     while let Some(token) = tokens.next() {
         if token.eq("{") {
             // break;
@@ -203,21 +194,21 @@ fn main() {
             // break;
         } else {
             if token.eq("DesktopGame") {
-                current_node = 100;
+                *current_node = 100;
             } else if token.eq("Window") {
-                current_node = 200;
+                *current_node = 200;
             } else if token.eq("Button") {
-                current_node = 300;
+                *current_node = 300;
             } else if token.eq("Text") {
-                current_node = 400;
+                *current_node = 400;
             } else if token.eq("Style") {
-                current_node = 500;
+                *current_node = 500;
             } else if token.eq("State") {
-                current_node = 600;
+                *current_node = 600;
             } else if token.eq("Tooltip") {
-                current_node = 700;
+                *current_node = 700;
             }
-            match current_node {
+            match *current_node {
                 100 => {
                     if let Some((key, val)) = token.split_once('=') {
                         match key {
@@ -227,7 +218,155 @@ fn main() {
                             "y" => println!("{}", val),
                             "w" => println!("{}", val),
                             "h" => println!("{}", val),
-                            "container" => println!("{}", val),
+                            "container" => {
+                                println!("container {}", val);
+                                let temp = val.parse().unwrap();
+                                *container = temp;
+                            }
+                            "texture" => println!("{}", val),
+                            "text" => println!("{}", val),
+                            "normal" => println!("{}", val),
+                            "pushed" => println!("{}", val),
+                            "highlight" => println!("{}", val),
+                            _ => {}
+                        }
+                    }
+                }
+                200 => {
+                    if let Some((key, val)) = token.split_once('=') {
+                        match key {
+                            "id" => println!("{}", val),
+                            "name" => println!("{}", val),
+                            "x" => println!("{}", val),
+                            "y" => println!("{}", val),
+                            "w" => println!("{}", val),
+                            "h" => println!("{}", val),
+                            "container" => {
+                                println!("container {}", val);
+                                let temp = val.parse().unwrap();
+                                *container = temp;
+                                // println!("{}", *container);
+                            }
+                            "texture" => println!("{}", val),
+                            "text" => println!("{}", val),
+                            "normal" => println!("{}", val),
+                            "pushed" => println!("{}", val),
+                            "highlight" => println!("{}", val),
+                            _ => {}
+                        }
+                    }
+                }
+                300 => {
+                    if let Some((key, val)) = token.split_once('=') {
+                        match key {
+                            "id" => println!("{}", val),
+                            "name" => println!("{}", val),
+                            "x" => println!("{}", val),
+                            "y" => println!("{}", val),
+                            "w" => println!("{}", val),
+                            "h" => println!("{}", val),
+                            "container" => {
+                                println!("container {}", val);
+                                let temp = val.parse().unwrap();
+                                *container = temp;
+                                // println!("{}", *container);
+                            }
+                            "texture" => println!("{}", val),
+                            "text" => println!("{}", val),
+                            "normal" => println!("{}", val),
+                            "pushed" => println!("{}", val),
+                            "highlight" => println!("{}", val),
+                            _ => {}
+                        }
+                    }
+                }
+                400 => {
+                    if let Some((key, val)) = token.split_once('=') {
+                        match key {
+                            "id" => println!("{}", val),
+                            "name" => println!("{}", val),
+                            "x" => println!("{}", val),
+                            "y" => println!("{}", val),
+                            "w" => println!("{}", val),
+                            "h" => println!("{}", val),
+                            "container" => {
+                                println!("container {}", val);
+                                let temp = val.parse().unwrap();
+                                *container = temp;
+                                // println!("{}", *container);
+                            }
+                            "texture" => println!("{}", val),
+                            "text" => println!("{}", val),
+                            "normal" => println!("{}", val),
+                            "pushed" => println!("{}", val),
+                            "highlight" => println!("{}", val),
+                            _ => {}
+                        }
+                    }
+                }
+                500 => {
+                    if let Some((key, val)) = token.split_once('=') {
+                        match key {
+                            "id" => println!("{}", val),
+                            "name" => println!("{}", val),
+                            "x" => println!("{}", val),
+                            "y" => println!("{}", val),
+                            "w" => println!("{}", val),
+                            "h" => println!("{}", val),
+                            "container" => {
+                                println!("container {}", val);
+                                let temp = val.parse().unwrap();
+                                *container = temp;
+                                // println!("{}", *container);
+                            }
+                            "texture" => println!("{}", val),
+                            "text" => println!("{}", val),
+                            "normal" => println!("{}", val),
+                            "pushed" => println!("{}", val),
+                            "highlight" => println!("{}", val),
+                            _ => {}
+                        }
+                    }
+                }
+                600 => {
+                    if let Some((key, val)) = token.split_once('=') {
+                        match key {
+                            "id" => println!("{}", val),
+                            "name" => println!("{}", val),
+                            "x" => println!("{}", val),
+                            "y" => println!("{}", val),
+                            "w" => println!("{}", val),
+                            "h" => println!("{}", val),
+                            "container" => {
+                                println!("container {}", val);
+                                let temp = val.parse().unwrap();
+                                *container = temp;
+                                // println!("{}", *container);
+                            }
+                            "texture" => println!("{}", val),
+                            "text" => println!("{}", val),
+                            "normal" => println!("{}", val),
+                            "pushed" => println!("{}", val),
+                            "highlight" => println!("{}", val),
+                            _ => {}
+                        }
+                    }
+                }
+                700 => {
+                    if let Some((key, val)) = token.split_once('=') {
+                        match key {
+                            "id" => println!("{}", val),
+                            "name" => println!("{}", val),
+                            "x" => println!("{}", val),
+                            "y" => println!("{}", val),
+                            "w" => println!("{}", val),
+                            "h" => println!("{}", val),
+                            "container" => {
+                                println!("container {}", val);
+                                let temp = val.parse().unwrap();
+                                *container = temp;
+                                // println!("{}", *container);
+                            }
                             "texture" => println!("{}", val),
                             "text" => println!("{}", val),
                             "normal" => println!("{}", val),
@@ -239,7 +378,29 @@ fn main() {
                 }
                 _ => {}
             }
+            let childrens = container.clone();
+            // let mut children_list = Vec::new();
+            for _ in 0..childrens {
+                parser(tokens, current_node, container);
+                // if let Some(child) = parser(tokens, current_node, container) {
+                //     children_list.push(child);
+                // }
+            }
         }
     }
+}
+
+fn main() {
+    let content = std::fs::read_to_string("settingui.txt")
+        .map_err(|e| e.to_string())
+        .expect("msg");
+    let formatted = content
+        .replace("{", " { ")
+        .replace("}", " } ")
+        .replace(";", " ; ");
+    let mut tokens = formatted.split_whitespace();
+    let mut current_node = 0;
+    let mut container = 0;
+    parser(&mut tokens, &mut current_node, &mut container);
     // println!("{:?}", tokens);
 }
