@@ -195,6 +195,7 @@ fn main() {
         .replace(";", " ; ");
     // formatted = content.replace(";", " ; ").replace("}", " } ");
     let mut tokens = formatted.split_whitespace();
+    let mut current_node = 0;
     while let Some(token) = tokens.next() {
         if token.eq("{") {
             // break;
@@ -202,27 +203,41 @@ fn main() {
             // break;
         } else {
             if token.eq("DesktopGame") {
+                current_node = 100;
             } else if token.eq("Window") {
+                current_node = 200;
             } else if token.eq("Button") {
+                current_node = 300;
             } else if token.eq("Text") {
+                current_node = 400;
             } else if token.eq("Style") {
+                current_node = 500;
             } else if token.eq("State") {
+                current_node = 600;
+            } else if token.eq("Tooltip") {
+                current_node = 700;
             }
-            if let Some((key, val)) = token.split_once('=') {
-                match key {
-                    "Name" | "name" => println!("{}", val),
-                    "x" => println!("{}", val),
-                    "y" => println!("{}", val),
-                    "w" => println!("{}", val),
-                    "h" => println!("{}", val),
-                    "container" => println!("{}", val),
-                    "texture" => println!("{}", val),
-                    "text" => println!("{}", val),
-                    "normal" => println!("{}", val),
-                    "pushed" => println!("{}", val),
-                    "highlight" => println!("{}", val),
-                    _ => {}
+            match current_node {
+                100 => {
+                    if let Some((key, val)) = token.split_once('=') {
+                        match key {
+                            "id" => println!("{}", val),
+                            "name" => println!("{}", val),
+                            "x" => println!("{}", val),
+                            "y" => println!("{}", val),
+                            "w" => println!("{}", val),
+                            "h" => println!("{}", val),
+                            "container" => println!("{}", val),
+                            "texture" => println!("{}", val),
+                            "text" => println!("{}", val),
+                            "normal" => println!("{}", val),
+                            "pushed" => println!("{}", val),
+                            "highlight" => println!("{}", val),
+                            _ => {}
+                        }
+                    }
                 }
+                _ => {}
             }
         }
     }
