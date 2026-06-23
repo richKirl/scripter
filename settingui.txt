@@ -1,0 +1,96 @@
+DesktopGame{
+    id="-1"; name="Root"; x=0; y=0; w=max; h=max; Style{}; State{}; Tooltip{};
+
+    container=2;
+
+    Window{
+        id="Widget"; name="PlayerWidget";x=50;y=50;w=300;h=100;
+
+        Style { texture="asset/PlayerWidget.png"; };
+
+        State { is_visible=true; };
+
+        Tooltip { text="" };
+
+        container=1;
+
+        Window{
+            id="Widget"; name="PlayerHealthColor";x=80;y=35;w=180;h=20;
+
+            Style { texture="asset/PlayerHealthColor.png"; };
+
+            State { is_visible=true; };
+
+            Tooltip { text="" };
+
+            container=1;
+
+            Text{
+                id="Text"; name="PlayerHealthText"; x=60;y=2;text="Loading...";
+
+                Style { color=white; };
+
+                container=0;
+            };
+        };
+    };
+    Window{
+        id="Widget"; name="PlayerButtons"; x=250; y=480; w=300; h=60;
+
+        Style {};
+
+        State { is_visible=true; };
+
+        Tooltip { text="" };
+
+        container=2;
+
+        Button{
+            id="Button"; name="Button1";x=0;y=0;w=48;h=48;
+
+            Style { normal="asset/Button1_Normal.png";pushed="asset/Button1_Pushed.png";highlight="asset/Button1_Highlight.png"; };
+
+            State { is_visible=true; };
+
+            Tooltip { text="" };
+
+            container=1;
+
+            Text {
+                id="Text"; name="Bind1"; x=32; y=2; text="1";
+
+                Style { color=white; };
+
+                State { is_visible=true; };
+
+                Tooltip { text="" };
+
+                container=0;
+            };
+
+        };
+        Button{
+            id="Button"; name="Button2";x=54;y=0;w=48;h=48;
+
+            Style { normal="asset/Button2_Normal.png";pushed="asset/Button2_Pushed.png";highlight="asset/Button2_Highlight.png"; };
+
+            State { is_visible=true; };
+
+            Tooltip { text="" };
+
+            container=1;
+
+            Text {
+                id="Text"; name="Bind2"; x=32; y=2; text="2";
+
+                Style { color=white; };
+
+                State { is_visible=true; };
+
+                Tooltip { text="" };
+
+                container=0;
+            };
+        };
+    };
+};

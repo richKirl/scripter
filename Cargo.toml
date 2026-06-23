@@ -1,0 +1,10 @@
+[package]
+name = "TestRustUI"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Включаем поддержку работы с картинками (PNG) через feature "image"
+sdl2 = { version = "0.38", features = ["image"] }
+serde = { version = "1.0", features = ["derive"] }
+quick-xml = { version = "0.36", features = ["serialize"] }
